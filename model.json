@@ -1,0 +1,123 @@
+[
+    {
+      "@id": "dtmi:computeModel:compute;1",
+      "@type": "Interface",
+      "contents": [
+        {
+          "@id": "dtmi:computeModel:compute:temp;1",
+          "@type": "Telemetry",
+          "comment": "Transformed and computed element",
+          "displayName": {
+            "en": "Temperature"
+          },
+          "name": "temp",
+          "schema": "double",
+          "unit": "degreeFahrenheit"
+        },
+        {
+          "@id": "dtmi:computeModel:compute:humidity;1",
+          "@type": "Telemetry",
+          "comment": "Transformed and computed element",
+          "displayName": {
+            "en": "Humidity"
+          },
+          "name": "humidity",
+          "schema": "double",
+          "unit": "percent"
+        },
+        {
+          "@id": "dtmi:computeModel:compute:lat;1",
+          "@type": "Telemetry",
+          "comment": "Transformed element",
+          "displayName": {
+            "en": "Latitude"
+          },
+          "name": "lat",
+          "schema": "double"
+        },
+        {
+          "@id": "dtmi:computeModel:compute:lon;1",
+          "@type": "Telemetry",
+          "comment": "Transformed element",
+          "displayName": {
+            "en": "Longitude"
+          },
+          "name": "lon",
+          "schema": "double"
+        },
+        {
+          "@id": "dtmi:computeModel:compute:weather;1",
+          "@type": "Telemetry",
+          "comment": "Computed element",
+          "displayName": {
+            "en": "Weather"
+          },
+          "name": "weather",
+          "schema": {
+            "@id": "dtmi:computeModel:compute:weather:schema;1",
+            "@type": "Object",
+            "displayName": {
+              "en": "Object"
+            },
+            "fields": [
+              {
+                "@id": "dtmi:computeModel:compute:weather:schema:temp;1",
+                "displayName": {
+                  "en": "Temperature"
+                },
+                "name": "temp",
+                "schema": "double"
+              },
+              {
+                "@id": "dtmi:computeModel:compute:weather:schema:humidity;1",
+                "displayName": {
+                  "en": "Humidity"
+                },
+                "name": "humidity",
+                "schema": "integer"
+              },
+              {
+                "@id": "dtmi:computeModel:compute:weather:schema:pressure;1",
+                "displayName": {
+                  "en": "Pressure"
+                },
+                "name": "pressure",
+                "schema": "integer"
+              },
+              {
+                "@id": "dtmi:computeModel:compute:weather:schema:wind_speed;1",
+                "displayName": {
+                  "en": "Windspeed"
+                },
+                "name": "wind_speed",
+                "schema": "double"
+              },
+              {
+                "@id": "dtmi:computeModel:compute:weather:schema:clouds;1",
+                "displayName": {
+                  "en": "Clouds"
+                },
+                "name": "clouds",
+                "schema": "integer"
+              },
+              {
+                "@id": "dtmi:computeModel:compute:weather:schema:uvi;1",
+                "displayName": {
+                  "en": "UVI"
+                },
+                "name": "uvi",
+                "schema": "integer"
+              }
+            ]
+          }
+        }
+      ],
+      "displayName": {
+        "en": "compute"
+      },
+      "@context": [
+        "dtmi:iotcentral:context;2",
+        "dtmi:dtdl:context;2"
+      ]
+    }
+  ]

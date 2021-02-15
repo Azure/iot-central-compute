@@ -17,7 +17,7 @@ const provisioningHost = "global.azure-devices-provisioning.net";
 const scopeId = "0ne0005C8ED";
 const deviceId = "compute01";
 const deviceKey = "mVH9OWKnlewc7zFyrDaPIZ+kB4cMxahBg/1urqAN1Fo=";
-const modelId = "dtmi:ianhollNew:compute6jl;1";
+const modelId = "dtmi:computeModel:compute;1";
 
 const provisioningSecurityClient = new SymmetricKeySecurityClient(deviceId, deviceKey);
 const provisioningClient = ProvisioningDeviceClient.create(provisioningHost, scopeId, new ProvisioningTransport(), provisioningSecurityClient);
