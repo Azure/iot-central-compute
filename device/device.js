@@ -15,15 +15,15 @@ const chance = new require('chance')();
 const provisioningHost = "global.azure-devices-provisioning.net";
 
 const scopeId = "0ne0005C8ED";
-const deviceId = "compute01";
-const deviceKey = "mVH9OWKnlewc7zFyrDaPIZ+kB4cMxahBg/1urqAN1Fo=";
+const deviceId = "computeDevice";
+const deviceKey = "MuhTABbh8eWK4vJXJR92hlef9uBm16bnNAgRolAJQNs=";
 const modelId = "dtmi:computeModel:compute;1";
 
 const provisioningSecurityClient = new SymmetricKeySecurityClient(deviceId, deviceKey);
 const provisioningClient = ProvisioningDeviceClient.create(provisioningHost, scopeId, new ProvisioningTransport(), provisioningSecurityClient);
-provisioningClient.setProvisioningPayload({ modelId: `{${modelId}}` });
+provisioningClient.setProvisioningPayload(`{ "iotcModelId": "${modelId}" }`);
 
-// Register the device.
+// Register the device
 provisioningClient.register(function(err, result) {
   if (err) {
     console.log("error registering device: " + err);
@@ -31,7 +31,6 @@ provisioningClient.register(function(err, result) {
     console.log('registration succeeded');
     console.log('assigned hub=' + result.assignedHub);
     console.log('deviceId=' + result.deviceId);
-    console.log('payload=' + JSON.stringify(result.payload));
     var connectionString = 'HostName=' + result.assignedHub + ';DeviceId=' + result.deviceId + ';SharedAccessKey=' + deviceKey;
     var hubClient = Client.fromConnectionString(connectionString, iotHubTransport);
 
