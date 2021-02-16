@@ -128,10 +128,10 @@ send status: MessageEnqueued [{"data":"40.5, 36.41, 14.6043, 14.079"}]
 
  If you now check your application you should see a device called "computeDevice" under the "Compute" device template name:
 
- ![Device computeDevice showing up]()
+ ![Device computeDevice showing up](https://github.com/iot-for-all/iot-central-compute/blob/main/assets/deviceshowingup.png)
 
  Clicking on the devie and looking at the Raw data view we should now see two different telemetry lines one after the other showing up around every five seconds:
 
- ![telemtry coming through]()
+ ![telemtry coming through](https://github.com/iot-for-all/iot-central-compute/blob/main/assets/telemetry.png)
 
  We can see the device CSV formatted telemetry come through first then the computed telemetry coming through after with the temperature in degrees fahrenheit and the additional weather service data all in JSON format and correctly recognized and interpreted by the IoT Central application.
