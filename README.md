@@ -38,7 +38,7 @@ Format expected by IoT Central:
 ```
 
 
-# Prerequisites
+# Pre-requisites
 
 1. Node.js installed for running the sample device code [node.js install files](https://nodejs.org/en/)
 2. Have a working [IoT Central application](https://apps.azureiotcentral.com/myapps).
