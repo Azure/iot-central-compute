@@ -1,5 +1,6 @@
 'use strict';
 
+const crypto = require('crypto');
 const iotHubTransport = require('azure-iot-device-mqtt').Mqtt;
 const Client = require('azure-iot-device').Client;
 const Message = require('azure-iot-device').Message;
@@ -10,15 +11,30 @@ const ProvisioningDeviceClient = require('azure-iot-provisioning-device').Provis
 const chance = new require('chance')();
 
 //
-// For the public clouds the address of the provisioning host would be: global.azure-devices-provisioning.net
+// For the public clouds the address of the provisioning host is global.azure-devices-provisioning.net, this will be different in private and soverign clouds
 //
 const provisioningHost = "global.azure-devices-provisioning.net";
 
-const scopeId = "0ne0005C8ED";
+// These values need to be filled in from your Azure IoT Central application
+//
+const scopeId = "<IoT Central Scope Id value>";
+const groupSasKey = "<IoT Central Group SAS key>";
+//
+/////////////////////////////////////////////////////////////////////////////
+
 const deviceId = "computeDevice";
-const deviceKey = "MuhTABbh8eWK4vJXJR92hlef9uBm16bnNAgRolAJQNs=";
 const modelId = "dtmi:computeModel:compute;1";
 
+
+// calculate the device key from the deviceId and group SAS key
+function getDeviceKey(deviceId, groupSasKey) {
+  return crypto.createHmac('SHA256', Buffer.from(groupSasKey, 'base64'))
+      .update(deviceId)
+      .digest()
+      .toString('base64');
+} 
+
+const deviceKey = getDeviceKey(deviceId, groupSasKey);
 const provisioningSecurityClient = new SymmetricKeySecurityClient(deviceId, deviceKey);
 const provisioningClient = ProvisioningDeviceClient.create(provisioningHost, scopeId, new ProvisioningTransport(), provisioningSecurityClient);
 provisioningClient.setProvisioningPayload(`{ "iotcModelId": "${modelId}" }`);
@@ -45,7 +61,7 @@ provisioningClient.register(function(err, result) {
           var message = new Message(`{"data":"${chance.floating({min: -20, max: 50, fixed: 2})}, ${chance.floating({min: 0, max: 100, fixed: 2})}, ${chance.latitude({fixed: 4})}, ${chance.longitude({fixed: 4})}"}`);
           hubClient.sendEvent(message, function(err, res) {
             if (err) console.log('send error: ' + err.toString());
-            if (res) console.log('send status: ' + res.constructor.name);
+            if (res) console.log('send status: ' + res.constructor.name + ' [' + message.data + ']');
           });
         }, 5000);
       }
