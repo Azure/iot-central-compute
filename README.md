@@ -134,4 +134,13 @@ send status: MessageEnqueued [{"data":"40.5, 36.41, 14.6043, 14.079"}]
 
  ![telemtry coming through](https://github.com/iot-for-all/iot-central-compute/blob/main/assets/telemetry.png)
 
- We can see the device CSV formatted telemetry come through first then the computed telemetry coming through after with the temperature in degrees fahrenheit and the additional weather service data all in JSON format and correctly recognized and interpreted by the IoT Central application.
+ We can see the device CSV formatted telemetry come through first then the computed telemetry coming through after with the temperature in degrees fahrenheit and the additional weather service data all in JSON format and correctly recognized and interpreted by the IoT Central application.  The computed data coming back into Azure IoT Central comes in with the same hub ingestion timestamp as the original CSV did.  This is not reflected in the raw data view as they use a different time stamp.  However if you were to use the "Analytics" page and plot an original telemetry element against a computed telemetry element they would align exactly at the same time.
+
+ This concludes all the steps to enabling data export, and compute via an Azure function using the Azure IoT Central device bridge as a starting point.  At this point you can go ahead and make changes to the code in index.js to add your own functionality for the custom procudres you need.  Enjoy!
+
+
+ # Limitations and things to consider
+
+Because the data comes through the IoT hub twice when using the Azure Function as we are it will consume two messages per message the device sends.  This may consume more messages than your monthly allotment and increase the cost of using Azure IoT Central.  One way around this would be to use the Azure IoT Central device bridge in it's original form and from your device call the Azure Function via HTTPS and send the telemetry and device identity in where it can be transformed, computed, augmented and finally sent to the Azure IoT Central application.  The limitation here will be that your device will be one way only with telemetry being sent from the device to the cloud but no device twin or commands being enabled for that device.
+
+The processing time in the Azure function must not exceed 5 minutesso ensure that the compute performed does not exceed this time.  Ideally for performance and scaling the processing and augmentation of data should be in the order of seconds.  If you really need long running jobs then you could look at converting this code to use [Azure Durable Functions](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview?tabs=csharp) especially if you are looking to data agregation over time windows for example.
