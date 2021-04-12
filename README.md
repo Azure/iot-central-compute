@@ -6,6 +6,8 @@ A simple way to do data transformation, compute, and data enhancement on data se
 
 Sometimes your device might not be able to send the right data format to Azure IoT Central or you may want to compute values or enhance the telemetry with external data services.  In this example we will use the [Azure IoT Central Bridge](https://github.com/Azure/iotc-device-bridge) code to do a simple compute pipeline using Azure Functions.
 
+ ![architecture diagram](https://github.com/iot-for-all/iot-central-compute/blob/main/assets/architecture.png)
+
 In our pipeline we will recieve data in comma seperated value (CSV) format.  The pipeline will do the following operations:
 
 1. Convert from CSV format to a JSON format that IoT Central understands
