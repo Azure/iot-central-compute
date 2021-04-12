@@ -35,7 +35,7 @@ module.exports = async function (context, req) {
         computedTelemetry.temp = await convertTemperature(context, computedTelemetry.temp);
 
         // get external weather data
-        const openWeatherAppId = 'c5c93a9ef23935b7be775f03f14b5618';
+        const openWeatherAppId = '<add your open weather API here: https://openweathermap.org/api>';
         computedTelemetry.weather = await getWeatherData(context, openWeatherAppId, computedTelemetry.lat, computedTelemetry.lon);
 
         // get the deviceId from the incoming message data
