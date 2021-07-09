@@ -1,6 +1,6 @@
 # iot-central-compute
 
-A simple way to do data transformation, compute, and data enhancement on data sent to Azure IoT Central
+A simple way to do data transformation, compute, and data enhancement on data sent to Azure IoT Central ([demo video](https://youtu.be/aV3fNHhyZN4))
 
 # Introduction
 
