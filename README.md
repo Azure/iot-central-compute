@@ -1,6 +1,9 @@
 # iot-central-compute
 
-A simple way to do data transformation, compute, and data enhancement on data sent to Azure IoT Central ([demo video](https://youtu.be/aV3fNHhyZN4))
+A simple way to do data transformation, compute, and data enhancement on data sent to Azure IoT Central
+
+# Demo Video 
+[![IoT Central Companion Experience - Contoso Drive](https://github.com/iot-for-all/iot-central-compute/blob/main/assets/ytthumb.png)](https://youtu.be/aV3fNHhyZN4)
 
 # Introduction
 
